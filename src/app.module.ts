@@ -1,16 +1,18 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { NotificationsModule } from './notifications/notifications.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [
+  imports: [ConfigModule.forRoot({ isGlobal: true }),
+
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+       url: process.env.DATABASE_URL,
       port: 5432,
       username: 'postgres', // tu usuario de postgres
-      password: '0107101503',    // tu contraseña
-      database: 'notification_db',
+      password: 'ueNIedmJzMTDsJoTVYxaaQLImjLMdVKo',    // tu contraseña
+      database: 'railway',
       autoLoadEntities: true,
       synchronize: true,
     }),
